@@ -122,9 +122,11 @@ d3.json("abc.json", function(error, root) {
 
   center.append("title")
       .text("zoom out");
+      
+  var partitioned_data=partition.nodes(root).slice(1)
 
   var path = svg.selectAll("path")
-      .data(partition.nodes(root).slice(1))
+      .data(partitioned_data)
     .enter().append("path")
       .attr("d", arc)
       .style("fill", function(d) { return d.fill; })
@@ -144,7 +146,7 @@ d3.json("abc.json", function(error, root) {
     .text(function(d) { return d.name; });
 */  
   var texts = svg.selectAll("text")
-      .data(partition.nodes(root).slice(1))
+      .data(partitioned_data)
     .enter().append("text")
     	.attr("transform", function(d) { return "rotate(" + computeTextRotation(d) + ")"; })
 		.attr("x", function(d) { return radius / 3 * d.depth; })	
