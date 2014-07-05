@@ -57,7 +57,7 @@ function format_number(x) {
 
 
 function format_name(d) {
-  var name = d.name;
+  var name = d.description;
       return  '<b>' + name + '</b><br> (' + format_number(d.value) + ')';
 }
 
@@ -90,7 +90,7 @@ function mouseMoveArc (d) {
 }
 
 var root_ = null;
-d3.json("flare.json", function(error, root) {
+d3.json("abc.json", function(error, root) {
   if (error) return console.warn(error);
   // Compute the initial layout on the entire tree to sum sizes.
   // Also compute the full name and fill color for each node,
