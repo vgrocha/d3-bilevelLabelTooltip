@@ -51,6 +51,15 @@ function computeTextRotation(d) {
   //return (x(d.x + d.dx / 2) - Math.PI / 2) / Math.PI * 180;
 }
 
+function highlightPath(d) {
+	d3.select(this).attr("stroke","black")
+}
+
+function deHighlightPath(d) {
+	d3.select(this).attr("stroke","")
+}
+
+
 var root_ = null;
 d3.json("mydata.json", function(error, root) {
   if (error) return console.warn(error);
@@ -87,7 +96,13 @@ d3.json("mydata.json", function(error, root) {
       .attr("d", arc)
       .style("fill", function(d) { return d.fill; })
       .each(function(d) { this._current = updateArc(d); })
-      .on("click", zoomIn);
+      .on("click", zoomIn)
+		.on("mouseover", highlightPath)
+  	   .on("mouseout", deHighlightPath);
+  	   
+    path.append("title")
+      .text("yum")
+      ;
 /*
   var text = g.append("text")
     .attr("transform", function(d) { return "rotate(" + computeTextRotation(d) + ")"; })
@@ -160,6 +175,8 @@ d3.json("mydata.json", function(error, root) {
           .style("fill-opacity", function(d) { return d.depth === 2 - (root === p) ? 1 : 0; })
           .style("fill", function(d) { return d.fill; })
           .on("click", zoomIn)
+          .on("mouseover", highlightPath)
+  	   	 .on("mouseout", deHighlightPath)
           .each(function(d) { this._current = enterArc(d); });
 
 		
