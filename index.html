@@ -12,6 +12,11 @@ circle {
   pointer-events: all;
 }
 
+#tooltip { background-color: white;
+			  padding: 3px 5px;
+			  border: 1px solid black;
+			  text-align: center;}
+
 html {
 	font-family: sans-serif;
 	
@@ -52,7 +57,7 @@ var arc = d3.svg.arc()
 //Tooltip description
 var tooltip = d3.select("body")
     .append("div")
-    .attr("class", "tooltip")
+    .attr("id", "tooltip")
     .style("position", "absolute")
     .style("z-index", "10")
     .style("opacity", 0);
@@ -64,7 +69,7 @@ function format_number(x) {
 
 function format_description(d) {
   var description = d.description;
-      return  '<b>' + description + '</b><br> (' + format_number(d.value) + ')';
+      return  '<b>' + d.name + '</b></br>'+ d.description + '<br> (' + format_number(d.value) + ')';
 }
 
 function computeTextRotation(d) {
