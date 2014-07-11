@@ -18,11 +18,13 @@ html {
 }
 </style>
 <body>
-<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="d3.v3.min.js"></script>
 <script>
 
 var margin = {top: 350, right: 480, bottom: 350, left: 480},
     radius = Math.min(margin.top, margin.right, margin.bottom, margin.left) - 10;
+
+function filter_min_arc_size_text(d, i) {return (d.dx*d.depth*radius/3)>14}; 
 
 var hue = d3.scale.category10();
 
@@ -137,6 +139,7 @@ d3.json("flare-labeled.json", function(error, root) {
   var texts = svg.selectAll("text")
       .data(partitioned_data)
     .enter().append("text")
+		.filter(filter_min_arc_size_text)    	
     	.attr("transform", function(d) { return "rotate(" + computeTextRotation(d) + ")"; })
 		.attr("x", function(d) { return radius / 3 * d.depth; })	
 		.attr("dx", "6") // margin
@@ -225,6 +228,7 @@ d3.json("flare-labeled.json", function(error, root) {
 		.attr("x", function(d) { return radius / 3 * d.depth; })	
 		.attr("dx", "6") // margin
       .attr("dy", ".35em") // vertical-align
+      .filter(filter_min_arc_size_text)    	
       .text(function(d,i) {return d.name})
 		.transition().delay(750).style("opacity", 1)
       	
