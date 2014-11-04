@@ -9,7 +9,7 @@ tooltip with a fancier description and the size of that partition.
 The base for this chart was [Mike's Bilevel Partition](http://bl.ocks.org/mbostock/5944371).
 Tooltips thanks to [Sharon Howard](http://sharonhoward.org/ob/punzoomsunbursttt.html)  
 
-Check out a [live version][http://bl.ocks.org/vgrocha/1580af34e56ee6224d33]   
+Check out a [live version](http://bl.ocks.org/vgrocha/1580af34e56ee6224d33)   
 
 
 "THE BEER-WARE LICENSE":
